@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from "react-redux";
 import {
   Image,
   Platform,
@@ -11,8 +12,9 @@ import {
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
+import { getData } from '../actions/test_action';
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
@@ -92,7 +94,8 @@ export default class HomeScreen extends React.Component {
   }
 
   _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
+    // WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
+    this.props.getData();
   };
 
   _handleHelpPress = () => {
@@ -190,3 +193,5 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+export default connect(null, { getData })(HomeScreen);
